@@ -1,0 +1,6 @@
+@AssemblyService_HostAddress = http://localhost:5033
+
+GET {{AssemblyService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
