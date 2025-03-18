@@ -1,12 +1,125 @@
 {
   "Version": 1,
-  "Hash": "x5qM3uBWFl8cIbs6wKIu+a3450dMKA+VcqNnjRbIBqI=",
+  "Hash": "fowyJy2jRM8yo3cZX7WwVnZRkR/bHvrGjMu10bPqW2c=",
   "Source": "AssemblyService",
   "BasePath": "_content/AssemblyService",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "AssemblyService\\wwwroot",
+      "Source": "AssemblyService",
+      "ContentRoot": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\wwwroot\\",
+      "BasePath": "_content/AssemblyService",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\wwwroot\\Templates\\SendEmailView\\AssemblyJobEmail.html",
+      "SourceId": "AssemblyService",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\wwwroot\\",
+      "BasePath": "_content/AssemblyService",
+      "RelativePath": "Templates/SendEmailView/AssemblyJobEmail#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "l2rf3jqyjb",
+      "Integrity": "M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Templates\\SendEmailView\\AssemblyJobEmail.html"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "Templates/SendEmailView/AssemblyJobEmail.html",
+      "AssetFile": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\wwwroot\\Templates\\SendEmailView\\AssemblyJobEmail.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2930"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 18 Mar 2025 05:57:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY="
+        }
+      ]
+    },
+    {
+      "Route": "Templates/SendEmailView/AssemblyJobEmail.l2rf3jqyjb.html",
+      "AssetFile": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\wwwroot\\Templates\\SendEmailView\\AssemblyJobEmail.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2930"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 18 Mar 2025 05:57:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l2rf3jqyjb"
+        },
+        {
+          "Name": "label",
+          "Value": "Templates/SendEmailView/AssemblyJobEmail.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY="
+        }
+      ]
+    }
+  ]
 }

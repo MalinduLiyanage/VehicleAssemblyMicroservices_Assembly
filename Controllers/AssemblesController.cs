@@ -16,16 +16,17 @@ namespace AssemblyService.Controllers
             this.assembleService = assembleService;
         }
 
-        [HttpGet]
+        [HttpPost("get-all")]
         public BaseResponse GetAssembles([FromQuery] int? vehicle_id, [FromQuery] int? worker_id, [FromQuery] int? assignee_id)
         {
             return assembleService.GetAssembles(vehicle_id, worker_id, assignee_id);
         }
 
-        [HttpPost]
-        public BaseResponse CreateAssemble([FromForm] PutAssembleRequest request)
+        [HttpPost("create")]
+        public async Task<BaseResponse> CreateAssemble([FromForm] PutAssembleRequest request)
         {
-            return assembleService.CreateAssemble(request);
+            return await assembleService.CreateAssemble(request);
         }
+
     }
 }

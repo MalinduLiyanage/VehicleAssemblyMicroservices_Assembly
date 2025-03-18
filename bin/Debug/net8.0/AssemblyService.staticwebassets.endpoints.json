@@ -1,5 +1,88 @@
 {
   "Version": 1,
   "ManifestType": "Build",
-  "Endpoints": []
+  "Endpoints": [
+    {
+      "Route": "Templates/SendEmailView/AssemblyJobEmail.html",
+      "AssetFile": "Templates/SendEmailView/AssemblyJobEmail.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2930"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 18 Mar 2025 05:57:19 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY="
+        }
+      ]
+    },
+    {
+      "Route": "Templates/SendEmailView/AssemblyJobEmail.l2rf3jqyjb.html",
+      "AssetFile": "Templates/SendEmailView/AssemblyJobEmail.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2930"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 18 Mar 2025 05:57:19 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l2rf3jqyjb"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-M5oyMrWVgm7RXdp3PS57oQCYw+EPZMhgsWPggbO+5KY="
+        },
+        {
+          "Name": "label",
+          "Value": "Templates/SendEmailView/AssemblyJobEmail.html"
+        }
+      ]
+    }
+  ]
 }

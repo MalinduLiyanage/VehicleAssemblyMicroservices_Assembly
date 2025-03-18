@@ -4,6 +4,7 @@ namespace AssemblyService.Attributes.ValidationAttributes
 {
     public interface IAssembleRequestValidationService
     {
-        List<string> Validate(PutAssembleRequest request);
+        Task<List<string>> Validate(PutAssembleRequest request);
     }
+
 }

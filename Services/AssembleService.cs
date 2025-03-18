@@ -7,6 +7,7 @@ using AssemblyService.DTOs.Responses;
 using AssemblyService.Utilities.EmailAttachmentUtility;
 using AdminService.DTOs.Requests.EmailRequests;
 using AdminService.Utilities.EmailServiceUtility.AdminAccountCreation;
+using AssemblyService.Utilities.CommunicationClientUtility;
 
 namespace AssemblyService.Services
 {
@@ -14,13 +15,13 @@ namespace AssemblyService.Services
     {
         private readonly ApplicationDbContext context;
         private readonly IEmailService emailService;
-        private readonly EmailAttachmentServiceUtility assemblyAttachmentService;
+        private readonly CommunicationClientUtility communicationClientUtility;
 
-        public AssembleService(ApplicationDbContext context, IEmailService emailService, EmailAttachmentServiceUtility assemblyAttachmentService)
+        public AssembleService(ApplicationDbContext context, IEmailService emailService, CommunicationClientUtility communicationClientUtility)
         {
             this.context = context;
             this.emailService = emailService;
-            this.assemblyAttachmentService = assemblyAttachmentService;
+            this.communicationClientUtility = communicationClientUtility;
         }
 
         public BaseResponse GetAssembles(int? vehicle_id, int? worker_id, int? assignee_id)
@@ -28,11 +29,11 @@ namespace AssemblyService.Services
             BaseResponse response;
             try
             {
-
+                
                 List<AssembleDTO> assembles = new List<AssembleDTO>();
 
                 using (context)
-                {
+                {/*
                     var query = context.assembles
                         .Include(a => a.Vehicle)
                         .Include(a => a.Worker)
@@ -63,7 +64,7 @@ namespace AssemblyService.Services
                         date = a.date,
                         isCompleted = a.isCompleted,
                         attachment = a.attachment_path
-                    }));
+                    }));*/
                 }
 
                 response = new BaseResponse
@@ -86,7 +87,7 @@ namespace AssemblyService.Services
 
         }
 
-        public BaseResponse CreateAssemble(PutAssembleRequest request)
+        public async Task<BaseResponse> CreateAssemble(PutAssembleRequest request)
         {
             BaseResponse response;
             try
@@ -107,9 +108,9 @@ namespace AssemblyService.Services
                 context.assembles.Add(newAssemble);
                 context.SaveChanges();
 
-                VehicleModel? vehicle = context.vehicle.FirstOrDefault(v => v.vehicle_id == request.vehicle_id);
-                WorkerModel? worker = context.worker.FirstOrDefault(w => w.NIC == request.nic);
-                AdminModel? admin = context.admins.FirstOrDefault(a => a.NIC == request.assignee_id);
+                AdminDTO admin = await communicationClientUtility.GetAssigneeData(request.assignee_id);
+                VehicleDTO vehicle = await communicationClientUtility.GetVehicleData(request.vehicle_id);
+                WorkerDTO worker = await communicationClientUtility.GetWorkerData(request.nic);
 
                 AssemblyJobCreationEmailRequestDTO emailInfo = new AssemblyJobCreationEmailRequestDTO
                 {

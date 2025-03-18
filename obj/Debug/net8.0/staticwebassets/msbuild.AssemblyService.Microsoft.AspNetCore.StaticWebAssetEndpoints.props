@@ -1,0 +1,16 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/AssemblyService/Templates/SendEmailView/AssemblyJobEmail.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Templates\SendEmailView\AssemblyJobEmail.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-M5oyMrWVgm7RXdp3PS57oQCYw\u002BEPZMhgsWPggbO\u002B5KY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2930"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022M5oyMrWVgm7RXdp3PS57oQCYw\u002BEPZMhgsWPggbO\u002B5KY=\u0022"},{"Name":"Last-Modified","Value":"Tue, 18 Mar 2025 05:57:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/AssemblyService/Templates/SendEmailView/AssemblyJobEmail.l2rf3jqyjb.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Templates\SendEmailView\AssemblyJobEmail.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"l2rf3jqyjb"},{"Name":"integrity","Value":"sha256-M5oyMrWVgm7RXdp3PS57oQCYw\u002BEPZMhgsWPggbO\u002B5KY="},{"Name":"label","Value":"_content/AssemblyService/Templates/SendEmailView/AssemblyJobEmail.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2930"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022M5oyMrWVgm7RXdp3PS57oQCYw\u002BEPZMhgsWPggbO\u002B5KY=\u0022"},{"Name":"Last-Modified","Value":"Tue, 18 Mar 2025 05:57:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

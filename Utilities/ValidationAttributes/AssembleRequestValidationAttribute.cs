@@ -21,7 +21,7 @@ namespace AssemblyService.Attributes.ValidationAttributes
                 return new ValidationResult("Validation service is unavailable.");
             }
 
-            var validationErrors = validationService.Validate(request);
+            var validationErrors = validationService.Validate(request).Result;
 
             if (validationErrors.Any())
             {
@@ -31,4 +31,5 @@ namespace AssemblyService.Attributes.ValidationAttributes
             return ValidationResult.Success;
         }
     }
+
 }

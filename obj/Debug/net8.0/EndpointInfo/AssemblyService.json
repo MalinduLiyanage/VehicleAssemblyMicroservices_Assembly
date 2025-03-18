@@ -5,38 +5,137 @@
     "version": "1.0"
   },
   "paths": {
-    "/WeatherForecast": {
-      "get": {
+    "/api/Assembles/get-all": {
+      "post": {
         "tags": [
-          "WeatherForecast"
+          "Assembles"
         ],
-        "operationId": "GetWeatherForecast",
+        "parameters": [
+          {
+            "name": "vehicle_id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "worker_id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "assignee_id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/BaseResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/BaseResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Assembles/create": {
+      "post": {
+        "tags": [
+          "Assembles"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignee_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "vehicle_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "nic": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "isCompleted": {
+                    "type": "boolean"
+                  },
+                  "assembly_attachment": {
+                    "type": "string",
+                    "format": "binary"
                   }
+                }
+              },
+              "encoding": {
+                "assignee_id": {
+                  "style": "form"
+                },
+                "vehicle_id": {
+                  "style": "form"
+                },
+                "nic": {
+                  "style": "form"
+                },
+                "date": {
+                  "style": "form"
+                },
+                "isCompleted": {
+                  "style": "form"
+                },
+                "assembly_attachment": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
                 }
               }
             }
@@ -47,24 +146,14 @@
   },
   "components": {
     "schemas": {
-      "WeatherForecast": {
+      "BaseResponse": {
         "type": "object",
         "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
+          "status_code": {
             "type": "integer",
             "format": "int32"
           },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
-            "type": "string",
+          "data": {
             "nullable": true
           }
         },

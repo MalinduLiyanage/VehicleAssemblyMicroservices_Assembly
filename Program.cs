@@ -2,6 +2,7 @@ using AssemblyService;
 using AssemblyService.Attributes;
 using AssemblyService.Attributes.ValidationAttributes;
 using AssemblyService.Services;
+using AssemblyService.Utilities.CommunicationClientUtility;
 using AssemblyService.Utilities.EmailAttachmentUtility;
 using AssemblyService.Utilities.EmailServiceUtility;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,12 @@ var user = Environment.GetEnvironmentVariable("DB_USER");
 var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
 //var connectionString = $"Server={server};Port={port};Database={database};User={user};Password={password};";
 var connectionString = $"Server=localhost;Port=3306;Database=vehicleassemblesdb;User=root;Password=;";
+
+builder.Services.AddHttpClient<CommunicationClientUtility>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5025");
+});
+
 
 GlobalAttributes.mySQLConfig.connectionString = connectionString;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

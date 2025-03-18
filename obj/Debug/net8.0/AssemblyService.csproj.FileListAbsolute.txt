@@ -105,10 +105,11 @@ C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\stati
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.AssemblyService.props
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.AssemblyService.props
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\Assembly.36425D24.Up2Date
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\AssemblyService.dll
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\refint\AssemblyService.dll
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\AssemblyService.pdb
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\AssemblyService.genruntimeconfig.cache
 C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\ref\AssemblyService.dll
+C:\Users\malin\source\repos\Microservices\AssemblyService\bin\Debug\net8.0\AssemblyService.staticwebassets.runtime.json
+C:\Users\malin\source\repos\Microservices\AssemblyService\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

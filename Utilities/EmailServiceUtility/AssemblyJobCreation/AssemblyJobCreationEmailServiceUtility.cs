@@ -9,7 +9,7 @@ namespace AdminService.Utilities.EmailServiceUtility.AdminAccountCreation
         {
             BodyBuilder bodyBuilder = new BodyBuilder();
 
-            string emailTemplate = Path.Combine(Directory.GetCurrentDirectory(), "Views", "SendEmailView", "SendEmailTemplate.html");
+            string emailTemplate = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Templates", "SendEmailView", "AssemblyJobEmail.html");
             string emailBody = File.ReadAllText(emailTemplate);
 
             emailBody = emailBody.Replace("{{WorkerName}}", request.WorkerName)
