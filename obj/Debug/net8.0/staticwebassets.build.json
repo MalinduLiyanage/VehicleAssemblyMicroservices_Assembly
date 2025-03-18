@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "x5qM3uBWFl8cIbs6wKIu+a3450dMKA+VcqNnjRbIBqI=",
+  "Source": "AssemblyService",
+  "BasePath": "_content/AssemblyService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

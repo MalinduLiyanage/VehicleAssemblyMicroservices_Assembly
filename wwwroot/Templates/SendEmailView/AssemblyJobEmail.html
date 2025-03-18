@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assembly Job Notification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #007bff;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .logo-container img {
+                max-width: 150px;
+            }
+
+        .email-header {
+            font-size: 22px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .email-body {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        .signature {
+            margin-top: 25px;
+            font-style: italic;
+            color: #555;
+        }
+
+            .signature img {
+                width: 120px;
+                display: block;
+                margin-top: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="logo-container">
+            <img src="https://static.vecteezy.com/system/resources/previews/022/969/114/non_2x/car-automotive-logo-design-vector.jpg" alt="Company Logo" width="300" height="173">
+        </div>
+        <div class="email-header">
+            Hello <span class="highlight">{{WorkerName}}</span>,
+        </div>
+        <div class="email-body">
+            You are assigned to the vehicle: <span class="highlight">{{model}}</span> (ID: <span class="highlight">{{vehicle_id}}</span>), which is scheduled to be completed on <span class="highlight">{{date}}</span>.
+            <br /><br />
+            Assigned By Admin: <span class="highlight">{{assignee_first_name}} {{assignee_last_name}}</span> (ID: <span class="highlight">{{assignee_id}}</span>)
+        </div>
+        <div class="signature">
+            Best Regards,<br />
+            <strong>Vehicle Assembly Pvt. Ltd</strong><br />
+        </div>
+        <div class="footer">
+            This email contains confidential information. If you are not the intended recipient, please delete it immediately.
+        </div>
+    </div>
+</body>
+</html>
