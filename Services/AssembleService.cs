@@ -8,6 +8,7 @@ using AssemblyService.Utilities.EmailAttachmentUtility;
 using AdminService.DTOs.Requests.EmailRequests;
 using AdminService.Utilities.EmailServiceUtility.AdminAccountCreation;
 using AssemblyService.Utilities.CommunicationClientUtility;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AssemblyService.Services
 {
@@ -24,67 +25,28 @@ namespace AssemblyService.Services
             this.communicationClientUtility = communicationClientUtility;
         }
 
-        public BaseResponse GetAssembles(int? vehicle_id, int? worker_id, int? assignee_id)
+        public List<AssemblesForWorkerDTO> GetWorkerAssemblesById(int id)
         {
-            BaseResponse response;
             try
             {
-                
-                List<AssembleDTO> assembles = new List<AssembleDTO>();
-
-                using (context)
-                {/*
-                    var query = context.assembles
-                        .Include(a => a.Vehicle)
-                        .Include(a => a.Worker)
-                        .Include(a => a.Admin)
-                        .AsQueryable();
-
-                    if (vehicle_id.HasValue)
-                        query = query.Where(a => a.vehicle_id == vehicle_id.Value);
-
-                    if (worker_id.HasValue)
-                        query = query.Where(a => a.NIC == worker_id.Value);
-
-                    if (assignee_id.HasValue)
-                        query = query.Where(a => a.assignee_id == assignee_id.Value);
-
-                    query.ToList().ForEach(a => assembles.Add(new AssembleDTO
+                var assemblies = context.assembles
+                    .Where(a => a.NIC == id)
+                    .Select(a => new AssemblesForWorkerDTO
                     {
                         assignee_id = a.assignee_id,
-                        assignee_first_name = a.Admin.firstname,
-                        assignee_last_name = a.Admin.lastname,
                         vehicle_id = a.vehicle_id,
-                        model = a.Vehicle.model,
-                        color = a.Vehicle.color,
-                        engine = a.Vehicle.engine,
-                        NIC = a.NIC,
-                        WorkerName = $"{a.Worker.firstname} {a.Worker.lastname}",
-                        job_role = a.Worker.job_role,
                         date = a.date,
                         isCompleted = a.isCompleted,
-                        attachment = a.attachment_path
-                    }));*/
-                }
+                        attachment_path = a.attachment_path
+                    })
+                    .ToList();
 
-                response = new BaseResponse
-                {
-                    status_code = StatusCodes.Status200OK,
-                    data = new { assembles }
-                };
-                return response;
-
+                return assemblies.Count > 0 ? assemblies : null; 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                response = new BaseResponse
-                {
-                    status_code = StatusCodes.Status500InternalServerError,
-                    data = new { message = "An error occurred while fetching assemble records." + e.Message }
-                };
+                return null; 
             }
-            return response;
-
         }
 
         public async Task<BaseResponse> CreateAssemble(PutAssembleRequest request)

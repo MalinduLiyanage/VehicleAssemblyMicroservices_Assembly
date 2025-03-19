@@ -16,10 +16,17 @@ namespace AssemblyService.Controllers
             this.assembleService = assembleService;
         }
 
-        [HttpPost("get-all")]
-        public BaseResponse GetAssembles([FromQuery] int? vehicle_id, [FromQuery] int? worker_id, [FromQuery] int? assignee_id)
+        [HttpPost("get-all/worker/{id}")]
+        public IActionResult GetWorkerassemblesById(int id)
         {
-            return assembleService.GetAssembles(vehicle_id, worker_id, assignee_id);
+            var result = assembleService.GetWorkerAssemblesById(id);
+
+            if (result == null)
+            {
+                return NotFound(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpPost("create")]
