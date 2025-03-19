@@ -19,29 +19,36 @@ namespace AssemblyService.Attributes.ValidationAttributes
         {
             List<string> errors = new List<string>();
 
-            // Validate Vehicle
-            var vehicleData = await communicationClientUtility.GetVehicleData(request.vehicle_id);
-            if (vehicleData == null || vehicleData.vehicle_id == 0) 
+            try
+            {
+                var vehicleData = await communicationClientUtility.GetVehicleData(request.vehicle_id);
+            }
+            catch (HttpRequestException ex)
             {
                 errors.Add("Invalid Vehicle ID. Vehicle does not exist.");
             }
 
-            // Validate Worker
-            var workerData = await communicationClientUtility.GetWorkerData(request.nic);
-            if (workerData == null || string.IsNullOrEmpty(workerData.firstname) || string.IsNullOrEmpty(workerData.lastname))
+            try
+            {
+                var workerData = await communicationClientUtility.GetWorkerData(request.nic);
+            }
+            catch (HttpRequestException ex)
             {
                 errors.Add("Invalid NIC. Worker does not exist.");
             }
 
-            // Validate Assignee
-            var assigneeData = await communicationClientUtility.GetAssigneeData(request.assignee_id);
-            if (assigneeData == null || assigneeData.nic == 0)
+            try
+            {
+                var assigneeData = await communicationClientUtility.GetAssigneeData(request.assignee_id);
+            }
+            catch (HttpRequestException ex)
             {
                 errors.Add("Invalid Assignee ID. Admin does not exist.");
             }
 
             return errors;
         }
+
 
     }
 }

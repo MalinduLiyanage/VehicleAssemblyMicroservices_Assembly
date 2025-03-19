@@ -92,55 +92,68 @@ namespace AssemblyService.Services
             BaseResponse response;
             try
             {
-                EmailAttachmentServiceUtility attachFile = new EmailAttachmentServiceUtility();
-                string filepath = attachFile.PostFileAsync(request).Result;
-
-                AssembleModel newAssemble = new AssembleModel
-                {
-                    assignee_id = request.assignee_id,
-                    vehicle_id = request.vehicle_id,
-                    NIC = request.nic,
-                    date = request.date,
-                    isCompleted = request.isCompleted,
-                    attachment_path = filepath
-                };
-
-                context.assembles.Add(newAssemble);
-                context.SaveChanges();
-
                 AdminDTO admin = await communicationClientUtility.GetAssigneeData(request.assignee_id);
                 VehicleDTO vehicle = await communicationClientUtility.GetVehicleData(request.vehicle_id);
                 WorkerDTO worker = await communicationClientUtility.GetWorkerData(request.nic);
 
-                AssemblyJobCreationEmailRequestDTO emailInfo = new AssemblyJobCreationEmailRequestDTO
+                if (admin != null && vehicle != null && worker != null)
                 {
-                    assignee_id = request.assignee_id,
-                    assignee_first_name = admin.firstname,
-                    assignee_last_name = admin.lastname,
-                    vehicle_id = vehicle.vehicle_id,
-                    model = vehicle.model,
-                    color = vehicle.color,
-                    engine = vehicle.engine,
-                    NIC = worker.NIC,
-                    WorkerName = $"{worker.firstname} {worker.lastname}",
-                    email = worker.email,
-                    job_role = worker.job_role,
-                    date = request.date
-                };
-
-                FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read);
-                string fileName = Path.GetFileName(filepath);
-                AssemblyJobCreationEmailServiceUtility message = new AssemblyJobCreationEmailServiceUtility(emailInfo, fs, fileName);
-
-                response = new BaseResponse
-                {
-                    status_code = StatusCodes.Status200OK,
-                    data = new
+                    response = new BaseResponse
                     {
-                        message = "Assemble record created successfully!",
-                        email_status = emailService.SendEmail(message)
-                    }
-                };
+                        status_code = StatusCodes.Status409Conflict,
+                        data = new { message = "The record already exists!" }
+                    };
+                }
+                else 
+                {
+                    
+                    EmailAttachmentServiceUtility attachFile = new EmailAttachmentServiceUtility();
+                    string filepath = attachFile.PostFileAsync(request).Result;
+
+                    AssembleModel newAssemble = new AssembleModel
+                    {
+                        assignee_id = request.assignee_id,
+                        vehicle_id = request.vehicle_id,
+                        NIC = request.nic,
+                        date = request.date,
+                        isCompleted = request.isCompleted,
+                        attachment_path = filepath
+                    };
+
+                    context.assembles.Add(newAssemble);
+                    context.SaveChanges();
+
+                    AssemblyJobCreationEmailRequestDTO emailInfo = new AssemblyJobCreationEmailRequestDTO
+                    {
+                        assignee_id = request.assignee_id,
+                        assignee_first_name = admin.firstname,
+                        assignee_last_name = admin.lastname,
+                        vehicle_id = vehicle.vehicle_id,
+                        model = vehicle.model,
+                        color = vehicle.color,
+                        engine = vehicle.engine,
+                        NIC = worker.NIC,
+                        WorkerName = $"{worker.firstname} {worker.lastname}",
+                        email = worker.email,
+                        job_role = worker.job_role,
+                        date = request.date
+                    };
+
+                    FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+                    string fileName = Path.GetFileName(filepath);
+                    AssemblyJobCreationEmailServiceUtility message = new AssemblyJobCreationEmailServiceUtility(emailInfo, fs, fileName);
+
+                    response = new BaseResponse
+                    {
+                        status_code = StatusCodes.Status200OK,
+                        data = new
+                        {
+                            message = "Assemble record created successfully!",
+                            email_status = emailService.SendEmail(message)
+                        }
+                    };
+                }
+                
             }
             catch (Exception ex)
             {

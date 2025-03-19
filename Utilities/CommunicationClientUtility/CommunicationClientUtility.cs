@@ -2,31 +2,38 @@
 using AssemblyService.DTOs;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace AssemblyService.Utilities.CommunicationClientUtility
 {
     public class CommunicationClientUtility
     {
         private readonly HttpClient httpClient;
+        private readonly string adminServiceUrl;
+        private readonly string accountsServiceVehicleUrl;
+        private readonly string accountsServiceWorkerUrl;
 
-        public CommunicationClientUtility(HttpClient httpClient)
+        public CommunicationClientUtility(HttpClient httpClient, IConfiguration configuration)
         {
             this.httpClient = httpClient;
+
+            // Ensuring no double slashes in URLs
+            adminServiceUrl = configuration["ServiceUrls:AdminServiceGetAdmin"];
+            accountsServiceVehicleUrl = configuration["ServiceUrls:AccountsServiceGetVehicle"];
+            accountsServiceWorkerUrl = configuration["ServiceUrls:AccountsServiceGetWorker"];
         }
 
         public async Task<AdminDTO> GetAssigneeData(int id)
         {
-            // POST request instead of GET
-            var response = await httpClient.PostAsJsonAsync($"http://localhost:5103/api/InternalAdmin/{id}", new { id });
-            response.EnsureSuccessStatusCode();  // Ensures HTTP response is successful
+            var response = await httpClient.PostAsJsonAsync($"{adminServiceUrl}{id}", new { id });
+            response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<AdminDTO>(content);
         }
 
         public async Task<VehicleDTO> GetVehicleData(int id)
         {
-            // POST request instead of GET
-            var response = await httpClient.PostAsJsonAsync($"http://localhost:5025/api/InternalAccounts/vehicle/{id}", new { id });
+            var response = await httpClient.PostAsJsonAsync($"{accountsServiceVehicleUrl}{id}", new { id });
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<VehicleDTO>(content);
@@ -34,8 +41,7 @@ namespace AssemblyService.Utilities.CommunicationClientUtility
 
         public async Task<WorkerDTO> GetWorkerData(int id)
         {
-            // POST request instead of GET
-            var response = await httpClient.PostAsJsonAsync($"http://localhost:5025/api/InternalAccounts/worker/{id}", new { id });
+            var response = await httpClient.PostAsJsonAsync($"{accountsServiceWorkerUrl}{id}", new { id });
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<WorkerDTO>(content);
