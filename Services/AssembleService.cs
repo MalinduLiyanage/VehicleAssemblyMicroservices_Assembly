@@ -54,23 +54,28 @@ namespace AssemblyService.Services
             BaseResponse response;
             try
             {
-                AdminDTO admin = await communicationClientUtility.GetAssigneeData(request.assignee_id);
-                VehicleDTO vehicle = await communicationClientUtility.GetVehicleData(request.vehicle_id);
-                WorkerDTO worker = await communicationClientUtility.GetWorkerData(request.nic);
+                bool assembleExists = context.assembles.Any(a =>
+                    a.assignee_id == request.assignee_id &&
+                    a.vehicle_id == request.vehicle_id &&
+                    a.NIC == request.nic);
+
+                if (assembleExists)
+                {
+                    return new BaseResponse
+                    {
+                        status_code = StatusCodes.Status409Conflict,
+                        data = new { message = "An assemble record with the same details already exists!" }
+                    };
+                }
+
+                AdminDTO? admin = await communicationClientUtility.GetAssigneeData(request.assignee_id);
+                VehicleDTO? vehicle = await communicationClientUtility.GetVehicleData(request.vehicle_id);
+                WorkerDTO? worker = await communicationClientUtility.GetWorkerData(request.nic);
 
                 if (admin != null && vehicle != null && worker != null)
                 {
-                    response = new BaseResponse
-                    {
-                        status_code = StatusCodes.Status409Conflict,
-                        data = new { message = "The record already exists!" }
-                    };
-                }
-                else 
-                {
-                    
                     EmailAttachmentServiceUtility attachFile = new EmailAttachmentServiceUtility();
-                    string filepath = attachFile.PostFileAsync(request).Result;
+                    string? filepath = attachFile.PostFileAsync(request).Result;
 
                     AssembleModel newAssemble = new AssembleModel
                     {
@@ -115,7 +120,14 @@ namespace AssemblyService.Services
                         }
                     };
                 }
-                
+                else
+                {
+                    response = new BaseResponse
+                    {
+                        status_code = StatusCodes.Status409Conflict,
+                        data = new { message = "Check for correct details first. Database does not have such entered records!" }
+                    };
+                }
             }
             catch (Exception ex)
             {
@@ -126,7 +138,6 @@ namespace AssemblyService.Services
                 };
             }
             return response;
-
         }
 
     }
