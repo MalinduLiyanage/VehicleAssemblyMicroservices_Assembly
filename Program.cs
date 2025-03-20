@@ -19,7 +19,6 @@ var connectionString = $"Server=localhost;Port=3306;Database=vehicleassemblesdb;
 
 builder.Services.AddHttpClient<CommunicationClientUtility>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5025");
 });
 
 
