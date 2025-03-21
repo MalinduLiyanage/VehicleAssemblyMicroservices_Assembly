@@ -1,4 +1,5 @@
-﻿using AssemblyService.DTOs.Requests;
+﻿using AssemblyService.DTOs;
+using AssemblyService.DTOs.Requests;
 using AssemblyService.DTOs.Responses;
 using AssemblyService.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace AssemblyService.Controllers
         [HttpPost("get-all/worker/{id}")]
         public IActionResult GetWorkerassemblesById(int id)
         {
-            var result = assembleService.GetWorkerAssemblesById(id);
+            List<AssemblesForWorkerDTO> result = assembleService.GetWorkerAssemblesById(id);
 
             if (result == null)
             {

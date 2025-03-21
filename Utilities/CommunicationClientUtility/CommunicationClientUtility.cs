@@ -16,7 +16,6 @@ namespace AssemblyService.Utilities.CommunicationClientUtility
         public CommunicationClientUtility(HttpClient httpClient, IConfiguration configuration)
         {
             this.httpClient = httpClient;
-
             adminServiceUrl = configuration["ServiceUrls:AdminServiceGetAdmin"];
             accountsServiceVehicleUrl = configuration["ServiceUrls:AccountsServiceGetVehicle"];
             accountsServiceWorkerUrl = configuration["ServiceUrls:AccountsServiceGetWorker"];
@@ -24,9 +23,9 @@ namespace AssemblyService.Utilities.CommunicationClientUtility
 
         public async Task<AdminDTO?> GetAssigneeData(int id)
         {
-            var response = await httpClient.PostAsJsonAsync($"{adminServiceUrl}{id}", new { id });
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync($"{adminServiceUrl}{id}", new { id });
             response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
+            string content = await response.Content.ReadAsStringAsync();
             if (content != null) 
             {
                 return JsonSerializer.Deserialize<AdminDTO>(content);
@@ -36,9 +35,9 @@ namespace AssemblyService.Utilities.CommunicationClientUtility
 
         public async Task<VehicleDTO?> GetVehicleData(int id)
         {
-            var response = await httpClient.PostAsJsonAsync($"{accountsServiceVehicleUrl}{id}", new { id });
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync($"{accountsServiceVehicleUrl}{id}", new { id });
             response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
+            string content = await response.Content.ReadAsStringAsync();
             if (content != null)
             {
                 return JsonSerializer.Deserialize<VehicleDTO>(content);
@@ -48,9 +47,9 @@ namespace AssemblyService.Utilities.CommunicationClientUtility
 
         public async Task<WorkerDTO?> GetWorkerData(int id)
         {
-            var response = await httpClient.PostAsJsonAsync($"{accountsServiceWorkerUrl}{id}", new { id });
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync($"{accountsServiceWorkerUrl}{id}", new { id });
             response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
+            string content = await response.Content.ReadAsStringAsync();
             if (content != null)
             {
                 return JsonSerializer.Deserialize<WorkerDTO>(content);

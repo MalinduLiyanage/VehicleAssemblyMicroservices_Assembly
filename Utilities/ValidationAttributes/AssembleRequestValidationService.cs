@@ -1,4 +1,5 @@
-﻿using AssemblyService.DTOs.Requests;
+﻿using AssemblyService.DTOs;
+using AssemblyService.DTOs.Requests;
 using AssemblyService.Utilities.CommunicationClientUtility;
 using System.Threading.Tasks;
 
@@ -21,27 +22,27 @@ namespace AssemblyService.Attributes.ValidationAttributes
 
             try
             {
-                var vehicleData = await communicationClientUtility.GetVehicleData(request.vehicle_id);
+                VehicleDTO? vehicleData = await communicationClientUtility.GetVehicleData(request.vehicle_id);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 errors.Add("Invalid Vehicle ID. Vehicle does not exist.");
             }
 
             try
             {
-                var workerData = await communicationClientUtility.GetWorkerData(request.nic);
+                WorkerDTO? workerData = await communicationClientUtility.GetWorkerData(request.nic);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 errors.Add("Invalid NIC. Worker does not exist.");
             }
 
             try
             {
-                var assigneeData = await communicationClientUtility.GetAssigneeData(request.assignee_id);
+                AdminDTO? assigneeData = await communicationClientUtility.GetAssigneeData(request.assignee_id);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 errors.Add("Invalid Assignee ID. Admin does not exist.");
             }

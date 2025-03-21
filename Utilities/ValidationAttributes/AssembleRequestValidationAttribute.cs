@@ -7,21 +7,21 @@ namespace AssemblyService.Attributes.ValidationAttributes
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var request = (PutAssembleRequest)validationContext.ObjectInstance;
+            PutAssembleRequest request = (PutAssembleRequest)validationContext.ObjectInstance;
 
             if (request.vehicle_id <= 0 || request.nic <= 0 || request.date == default)
             {
                 return new ValidationResult("All fields are required.");
             }
 
-            IAssembleRequestValidationService validationService = (IAssembleRequestValidationService)validationContext.GetService(typeof(IAssembleRequestValidationService));
+            IAssembleRequestValidationService? validationService = validationContext.GetService(typeof(IAssembleRequestValidationService)) as IAssembleRequestValidationService;
 
             if (validationService == null)
             {
                 return new ValidationResult("Validation service is unavailable.");
             }
 
-            var validationErrors = validationService.Validate(request).Result;
+            List<string> validationErrors = validationService.Validate(request).Result;
 
             if (validationErrors.Any())
             {

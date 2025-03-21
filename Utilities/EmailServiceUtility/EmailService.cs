@@ -19,12 +19,12 @@ namespace AssemblyService.Utilities.EmailServiceUtility
         {
             BaseResponse response = new BaseResponse();
 
-            var emailSettings = configuration.GetSection("EmailSettings");
-            string senderEmail = emailSettings["SenderEmail"];
-            string senderName = emailSettings["SenderName"];
-            string senderPassword = emailSettings["SenderPassword"];
-            string smtpServer = emailSettings["SmtpServer"];
-            int smtpPort = int.Parse(emailSettings["SmtpPort"]);
+            IConfigurationSection emailSettings = configuration.GetSection("EmailSettings");
+            string? senderEmail = emailSettings["SenderEmail"];
+            string? senderName = emailSettings["SenderName"];
+            string? senderPassword = emailSettings["SenderPassword"];
+            string? smtpServer = emailSettings["SmtpServer"];
+            int smtpPort = int.Parse(emailSettings["SmtpPort"] ?? "");
 
             message.From.Add(new MailboxAddress(senderName, senderEmail));
 

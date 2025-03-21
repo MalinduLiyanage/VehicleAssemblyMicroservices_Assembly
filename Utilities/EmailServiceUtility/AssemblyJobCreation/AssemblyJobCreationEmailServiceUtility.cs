@@ -23,14 +23,14 @@ namespace AdminService.Utilities.EmailServiceUtility.AdminAccountCreation
             bodyBuilder.HtmlBody = emailBody;
             this.To.Add(new MailboxAddress(request.WorkerName, request.email));
             this.Subject = "Assemble Job Assignment - " + request.date;
-            var multipart = new Multipart("mixed");
+            Multipart multipart = new Multipart("mixed");
 
-            var textPart = new TextPart(MimeKit.Text.TextFormat.Html) { Text = bodyBuilder.HtmlBody };
+            TextPart textPart = new TextPart(MimeKit.Text.TextFormat.Html) { Text = bodyBuilder.HtmlBody };
             multipart.Add(textPart);
 
             if (attachmentStream != null && !string.IsNullOrEmpty(attachmentFileName))
             {
-                var attachment = new MimePart()
+                MimePart attachment = new MimePart()
                 {
                     Content = new MimeContent(attachmentStream),
                     ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),

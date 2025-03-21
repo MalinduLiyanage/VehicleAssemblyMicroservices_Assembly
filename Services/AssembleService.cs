@@ -29,7 +29,7 @@ namespace AssemblyService.Services
         {
             try
             {
-                var assemblies = context.assembles
+                List<AssemblesForWorkerDTO> assemblies = context.assembles
                     .Where(a => a.NIC == id)
                     .Select(a => new AssemblesForWorkerDTO
                     {

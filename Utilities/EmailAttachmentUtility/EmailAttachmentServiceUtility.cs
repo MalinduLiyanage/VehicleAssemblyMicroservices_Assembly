@@ -15,19 +15,19 @@ namespace AssemblyService.Utilities.EmailAttachmentUtility
                     return null;
                 }
 
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
 
                 if (!Directory.Exists(uploadsFolder))
                 {
                     Directory.CreateDirectory(uploadsFolder);
                 }
 
-                var fileExtension = Path.GetExtension(request.assembly_attachment.FileName);
-                var filename = request.assignee_id + "_" + request.vehicle_id + "_" + request.nic + fileExtension;
+                string fileExtension = Path.GetExtension(request.assembly_attachment.FileName);
+                string filename = request.assignee_id + "_" + request.vehicle_id + "_" + request.nic + fileExtension;
 
-                var filePath = Path.Combine(uploadsFolder, filename);
+                string filePath = Path.Combine(uploadsFolder, filename);
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
                 {
                     await request.assembly_attachment.CopyToAsync(stream);
                 }
