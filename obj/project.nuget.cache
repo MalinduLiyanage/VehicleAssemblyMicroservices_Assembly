@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s6Cz12UFl8o=",
+  "dgSpecHash": "eVkiVayVYsw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\AssemblyService.csproj",
+  "projectFilePath": "C:\\Users\\malin\\source\\repos\\VehicleAssemblyMicroservices\\AssemblyService\\AssemblyService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\malin\\.nuget\\packages\\bouncycastle.cryptography\\2.5.0\\bouncycastle.cryptography.2.5.0.nupkg.sha512",
     "C:\\Users\\malin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

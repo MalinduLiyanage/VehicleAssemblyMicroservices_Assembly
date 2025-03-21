@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\AssemblyService.csproj": {}
+    "C:\\Users\\malin\\source\\repos\\VehicleAssemblyMicroservices\\AssemblyService\\AssemblyService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\AssemblyService.csproj": {
+    "C:\\Users\\malin\\source\\repos\\VehicleAssemblyMicroservices\\AssemblyService\\AssemblyService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\AssemblyService.csproj",
+        "projectUniqueName": "C:\\Users\\malin\\source\\repos\\VehicleAssemblyMicroservices\\AssemblyService\\AssemblyService.csproj",
         "projectName": "AssemblyService",
-        "projectPath": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\AssemblyService.csproj",
+        "projectPath": "C:\\Users\\malin\\source\\repos\\VehicleAssemblyMicroservices\\AssemblyService\\AssemblyService.csproj",
         "packagesPath": "C:\\Users\\malin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\malin\\source\\repos\\Microservices\\AssemblyService\\obj\\",
+        "outputPath": "C:\\Users\\malin\\source\\repos\\VehicleAssemblyMicroservices\\AssemblyService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
